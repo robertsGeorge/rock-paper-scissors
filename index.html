@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Rock Paper Scissors</title>
+</head>
+<body>
+  
+  <script>
+    
+    function playerPlay() {
+      option = prompt('Type below your choice of:\nRock\nPaper\nScissors');
+      return option;
+    }
+    
+    function computerPlay() {
+      let optionsArray = ['Rock', 'Paper', 'Scissors'];
+      let randomOption = optionsArray[Math.floor( Math.random() * optionsArray.length )];
+      return randomOption;
+    }
+
+    function makeNewSelections() {
+      playerSelection = playerPlay();
+      computerSelection = computerPlay();
+    }
+
+    function playRound() {
+      //plays round and increments relevant Score variable if there is a winner
+      
+      let lowerCasePlSel = playerSelection.toLowerCase();
+      let capitalizedPlSel = lowerCasePlSel.charAt(0).toUpperCase() + lowerCasePlSel.slice(1);
+      let result;
+
+      switch (capitalizedPlSel + computerSelection) {
+        case 'RockRock': 
+          result = 'It is a draw! Rock meets Rock';
+          break;
+        case 'RockPaper':
+          result = 'You lose! Paper beats Rock';
+          ++computerScore;
+          break;
+        case 'RockScissors':
+          result = 'You win! Rock beats Scissors';
+          ++playerScore;
+          break;
+        case 'PaperRock':
+          result = 'You win! Paper beats Rock';
+          ++playerScore;
+          break;
+        case 'PaperPaper':
+          result = 'It is a draw! Paper meets Paper';
+          break;
+        case 'PaperScissors':
+          result = 'You lose! Scissors beat Paper';
+          ++computerScore;
+          break;
+        case 'ScissorsRock':
+          result = 'You lose! Rock beats Scissors';
+          ++computerScore;
+          break;
+        case 'ScissorsPaper':
+          result = 'You win! Scissors beat Paper';
+          ++playerScore;
+          break;
+        case 'ScissorsScissors':
+          result = 'It is a draw! Scissors meets Scissors';
+          break;
+      }
+	  return result;
+    }
+
+    function game() {
+      //Round 1:
+      console.log ( playRound() );
+      console.log ('The score after Round 1 is:\nYou: ' + playerScore + '\nComputer: ' + computerScore);
+      
+      //Round 2:
+      makeNewSelections();
+      console.log ( playRound() );
+      console.log ('The score after Round 2 is:\nYou: ' + playerScore + '\nComputer: ' + computerScore);
+      
+      //Round 3:
+      makeNewSelections();
+      console.log ( playRound() );
+      console.log ('The score after Round 3 is:\nYou: ' + playerScore + '\nComputer: ' + computerScore);
+
+      //Round 4:
+      makeNewSelections();
+      console.log ( playRound() );
+      console.log ('The score after Round 4 is:\nYou: ' + playerScore + '\nComputer: ' + computerScore);
+
+      //Round 5:
+      makeNewSelections();
+      console.log ( playRound() );
+      console.log ('The final score after 5 rounds is:\nYou: ' + playerScore + '\nComputer: ' + computerScore);
+      
+      if (playerScore > computerScore) {
+        console.log('You won the game! Congratulations!');
+      } else if (computerScore > playerScore) {
+        console.log('You lost the game :( Better luck next time!');
+      } else {
+        console.log('The game is drawn! What are the odds!')
+      }
+
+    }
+
+    let playerSelection = playerPlay();
+    let computerSelection = computerPlay();
+    let playerScore = 0;
+    let computerScore = 0;
+    
+    //console.log(playRound(playerSelection, computerSelection))
+    console.log( game() );
+
+
+
+
+  </script>
+
+
+
+</body>
+</html>
