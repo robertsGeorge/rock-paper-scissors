@@ -19,10 +19,8 @@
   <button id="Scissors">Scissors</button>
   <br>
   <br>
-  <div id="resultDisplay"></div>
-  <br>
-  <div id="runningScore"></div>
-  <br>
+  <p id="resultDisplay"></p>
+  <p id="runningScore"></p>
   <p id="winnerAnnounce"></p>
   <div id="container"></div>
 
@@ -60,37 +58,37 @@
       // switch captures result of round and increments players'/computers' score if there's a winner
       switch (playerSelection + computerSelection) {
         case 'RockRock': 
-          result = 'It is a draw! Rock meets Rock';
+          result = 'It\'s a draw! Computer chose Rock too!';
           break;
         case 'RockPaper':
-          result = 'You lose! Paper beats Rock';
+          result = 'You lose! Rock loses to Paper.';
           ++computerScore;
           break;
         case 'RockScissors':
-          result = 'You win! Rock beats Scissors';
+          result = 'You win! Rock beats Scissors.';
           ++playerScore;
           break;
         case 'PaperRock':
-          result = 'You win! Paper beats Rock';
+          result = 'You win! Paper beats Rock.';
           ++playerScore;
           break;
         case 'PaperPaper':
-          result = 'It is a draw! Paper meets Paper';
+          result = 'It\'s a draw! Computer chose Paper too!';
           break;
         case 'PaperScissors':
-          result = 'You lose! Scissors beat Paper';
+          result = 'You lose! Paper loses to Scissors';
           ++computerScore;
           break;
         case 'ScissorsRock':
-          result = 'You lose! Rock beats Scissors';
+          result = 'You lose! Scissors lose to Rock.';
           ++computerScore;
           break;
         case 'ScissorsPaper':
-          result = 'You win! Scissors beat Paper';
+          result = 'You win! Scissors beat Paper.';
           ++playerScore;
           break;
         case 'ScissorsScissors':
-          result = 'It is a draw! Scissors meets Scissors';
+          result = 'It\'s a draw! Computer chose Scissors too!';
           break;
       }
 
