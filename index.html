@@ -24,6 +24,7 @@
   <div id="runningScore"></div>
   <br>
   <div id="winnerAnnounce"></div>
+  <div id="container"></div>
 
   <script>
     let playerSelection;
@@ -51,6 +52,7 @@
 
     function playRound(buttonClicked) {
       //plays round and increments relevant Score variable if there is a winner
+      document.getElementById("winnerAnnounce").innerHTML = "";
       computerSelection = computerPlay();
       playerSelection = buttonClicked;
       console.log(playerSelection, computerSelection);
@@ -93,26 +95,33 @@
           break;
       }
 
-    document.getElementById("resultDisplay").innerHTML = result;
-    document.getElementById("runningScore").innerHTML = 
-        'The running score is:<br><br>You: ' + playerScore + '<br>' + '\nComputer: ' + computerScore;
-    
-    if (playerScore === 5) {
-      document.getElementById("winnerAnnounce").innerHTML = 
-          "You are the first to reach 5 points! You win the game! Congratulations!<br><br> Click a button to start a new game.";
-      playerScore = 0;
-      computerScore = 0;
-    } else if (computerScore === 5) {
+      document.getElementById("resultDisplay").innerHTML = result;
+      document.getElementById("runningScore").innerHTML = 
+          'The score is:<br><br>You: ' + playerScore + '<br>' + '\nComputer: ' + computerScore;
+      
+      if (playerScore === 5) {
         document.getElementById("winnerAnnounce").innerHTML = 
-            "The computer is the first to reach 5 points! Sorry, you lost the game.<br><br> Click a button to start a new game.";
+            "<h3>You are the first to reach 5 points! You win the game! Congratulations!</h3><br> Click a button to start a new game.";
         playerScore = 0;
         computerScore = 0;
-    }
-    
-    return result;
+      } else if (computerScore === 5) {
+          document.getElementById("winnerAnnounce").innerHTML = 
+              "<h3>The computer is the first to reach 5 points! Sorry, you lost the game.</h3><br> Click a button to start a new game.";
+          playerScore = 0;
+          computerScore = 0;
+      }
+      
+      //return result;
     }
 
-    function game() {
+    function addResetBtn() {
+      let btn = document.createElement("button");
+      let btnTxt = document.createTextNode("Reset");
+      btn.appendChild(btnTxt);
+      document.getElementById("container").appendChild(btn);
+    }
+    // below is a redundant function named 'game' from an earlier stage version of this program which used console.log and prompt windows to work.
+    /* function game() {
       //Round 1:
       console.log ( playRound() );
       console.log ('The score after Round 1 is:\nYou: ' + playerScore + '\nComputer: ' + computerScore);
@@ -141,10 +150,9 @@
         console.log('The game is drawn! What are the odds!');
       }
 
-    }
+    } */
 
-    
-    
+
     //console.log( game() );
   </script>
 </body>
