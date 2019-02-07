@@ -8,7 +8,7 @@
 </head>
 <body>
   
-  <h1>Play the classic game <i>Rock, Paper, Scissors</i> versus the computer!</h1>
+  <h1>Play the classic game <i>Rock, Paper, Scissors</i> versus your computer!</h1>
   <br>
   <h2>Start a round by clicking on your chosen object below.</h2>
 
@@ -52,7 +52,6 @@
 
     function playRound(buttonClicked) {
       //plays round and increments relevant Score variable if there is a winner
-      document.getElementById("winnerAnnounce").innerHTML = "";
       computerSelection = computerPlay();
       playerSelection = buttonClicked;
       console.log(playerSelection, computerSelection);
@@ -102,19 +101,32 @@
       if (playerScore === 5) {
         document.getElementById("winnerAnnounce").innerHTML = 
             "<h3>You are the first to reach 5 points! You win the game! Congratulations!</h3><br> Click the <b>Reset</b> button below to start a new game.";
-        playerScore = 0;
-        computerScore = 0;
+        
         addResetBtn();
+        let resetBtn = document.getElementById("resetBtn");
+        resetBtn.addEventListener('click', removeResults);
+
       } else if (computerScore === 5) {
           document.getElementById("winnerAnnounce").innerHTML = 
               "<h3>The computer is the first to reach 5 points! Sorry, you lost the game.</h3><br> Click the <b>Reset</b> button below to start a new game.";
-          playerScore = 0;
-          computerScore = 0;
+         
           addResetBtn();
+          let resetBtn = document.getElementById("resetBtn");
+          resetBtn.addEventListener('click', removeResults);
       }
       
       //return result;
     }
+
+    function removeResults() {
+      document.getElementById("resultDisplay").innerHTML = "";
+      document.getElementById("runningScore").innerHTML = "";
+      document.getElementById("winnerAnnounce").innerHTML = "";
+      playerScore = 0;
+      computerScore = 0;
+      resetBtn.parentNode.removeChild(resetBtn);
+    }
+    
 
     function addResetBtn() {
       let btn = document.createElement("button");
