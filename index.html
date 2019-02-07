@@ -8,11 +8,22 @@
 </head>
 <body>
   
+  <h1>Play the classic game <i>Rock, Paper, Scissors</i> versus the computer!</h1>
+  <br>
+  <h2>Start a round by clicking on your chosen object below.</h2>
+
+  <h3>The first to reach 5 points is the winner!</h3>
+  <br>
   <button id="Rock">Rock</button>
   <button id="Paper">Paper</button>
   <button id="Scissors">Scissors</button>
+  <br>
+  <br>
   <div id="resultDisplay"></div>
+  <br>
   <div id="runningScore"></div>
+  <br>
+  <div id="winnerAnnounce"></div>
 
   <script>
     let playerSelection;
@@ -43,8 +54,9 @@
       computerSelection = computerPlay();
       playerSelection = buttonClicked;
       console.log(playerSelection, computerSelection);
+      
       let result;
-
+      // switch captures result of round and increments players'/computers' score if there's a winner
       switch (playerSelection + computerSelection) {
         case 'RockRock': 
           result = 'It is a draw! Rock meets Rock';
@@ -83,7 +95,20 @@
 
     document.getElementById("resultDisplay").innerHTML = result;
     document.getElementById("runningScore").innerHTML = 
-        'The running score is:\nYou: ' + playerScore + '\nComputer: ' + computerScore;
+        'The running score is:<br><br>You: ' + playerScore + '<br>' + '\nComputer: ' + computerScore;
+    
+    if (playerScore === 5) {
+      document.getElementById("winnerAnnounce").innerHTML = 
+          "You are the first to reach 5 points! You win the game! Congratulations!<br><br> Click a button to start a new game.";
+      playerScore = 0;
+      computerScore = 0;
+    } else if (computerScore === 5) {
+        document.getElementById("winnerAnnounce").innerHTML = 
+            "The computer is the first to reach 5 points! Sorry, you lost the game.<br><br> Click a button to start a new game.";
+        playerScore = 0;
+        computerScore = 0;
+    }
+    
     return result;
     }
 
