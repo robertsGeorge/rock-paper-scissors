@@ -8,19 +8,29 @@
 </head>
 <body>
   
-
-  <button>Rock</button>
-  <button>Paper</button>
-  <button>Scissors</button>
-  
-
+  <button id="Rock">Rock</button>
+  <button id="Paper">Paper</button>
+  <button id="Scissors">Scissors</button>
+  <div id="resultDisplay"></div>
+  <div id="runningScore"></div>
 
   <script>
+    let playerSelection;
+    let computerSelection;
+    let playerScore = 0;
+    let computerScore = 0;
     
-    function playerPlay() {
+    let rockButton = document.getElementById("Rock");
+    rockButton.addEventListener('click', function() { playRound("Rock"); });
+    let paperButton = document.getElementById("Paper");
+    paperButton.addEventListener('click', function() { playRound("Paper"); });
+    let scissorsButton = document.getElementById("Scissors");
+    scissorsButton.addEventListener('click', function() { playRound("Scissors"); });
+
+    /* function playerPlay() {
       option = prompt('Type below your choice of:\nRock\nPaper\nScissors');
       return option;
-    }
+    } */
     
     function computerPlay() {
       let optionsArray = ['Rock', 'Paper', 'Scissors'];
@@ -28,17 +38,14 @@
       return randomOption;
     }
 
-    function playRound() {
+    function playRound(buttonClicked) {
       //plays round and increments relevant Score variable if there is a winner
       computerSelection = computerPlay();
-      
-      playerSelection = playerPlay();
-      let lowerCasePlSel = playerSelection.toLowerCase();
-      let capitalizedPlSel = lowerCasePlSel.charAt(0).toUpperCase() + lowerCasePlSel.slice(1);
-      
+      playerSelection = buttonClicked;
+      console.log(playerSelection, computerSelection);
       let result;
 
-      switch (capitalizedPlSel + computerSelection) {
+      switch (playerSelection + computerSelection) {
         case 'RockRock': 
           result = 'It is a draw! Rock meets Rock';
           break;
@@ -73,7 +80,11 @@
           result = 'It is a draw! Scissors meets Scissors';
           break;
       }
-	  return result;
+
+    document.getElementById("resultDisplay").innerHTML = result;
+    document.getElementById("runningScore").innerHTML = 
+        'The running score is:\nYou: ' + playerScore + '\nComputer: ' + computerScore;
+    return result;
     }
 
     function game() {
@@ -107,12 +118,9 @@
 
     }
 
-    let playerSelection;
-    let computerSelection;
-    let playerScore = 0;
-    let computerScore = 0;
     
-    console.log( game() );
+    
+    //console.log( game() );
   </script>
 </body>
 </html>
