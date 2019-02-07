@@ -28,16 +28,20 @@
       return randomOption;
     }
 
-    function makeNewSelections() {
+    /* function makeNewSelections() {
       playerSelection = playerPlay();
       computerSelection = computerPlay();
-    }
+    } */
 
     function playRound() {
       //plays round and increments relevant Score variable if there is a winner
       
+      computerSelection = computerPlay();
+      
+      playerSelection = playerPlay();
       let lowerCasePlSel = playerSelection.toLowerCase();
       let capitalizedPlSel = lowerCasePlSel.charAt(0).toUpperCase() + lowerCasePlSel.slice(1);
+      
       let result;
 
       switch (capitalizedPlSel + computerSelection) {
@@ -84,22 +88,22 @@
       console.log ('The score after Round 1 is:\nYou: ' + playerScore + '\nComputer: ' + computerScore);
       
       //Round 2:
-      makeNewSelections();
+      // makeNewSelections();
       console.log ( playRound() );
       console.log ('The score after Round 2 is:\nYou: ' + playerScore + '\nComputer: ' + computerScore);
       
       //Round 3:
-      makeNewSelections();
+      // makeNewSelections();
       console.log ( playRound() );
       console.log ('The score after Round 3 is:\nYou: ' + playerScore + '\nComputer: ' + computerScore);
 
       //Round 4:
-      makeNewSelections();
+      // makeNewSelections();
       console.log ( playRound() );
       console.log ('The score after Round 4 is:\nYou: ' + playerScore + '\nComputer: ' + computerScore);
 
       //Round 5:
-      makeNewSelections();
+      // makeNewSelections();
       console.log ( playRound() );
       console.log ('The final score after 5 rounds is:\nYou: ' + playerScore + '\nComputer: ' + computerScore);
       
@@ -113,20 +117,12 @@
 
     }
 
-    let playerSelection = playerPlay();
-    let computerSelection = computerPlay();
+    let playerSelection;
+    let computerSelection;
     let playerScore = 0;
     let computerScore = 0;
     
-
-    // console.log( game() );
-
-
-
-
+    console.log( game() );
   </script>
-
-
-
 </body>
 </html>
